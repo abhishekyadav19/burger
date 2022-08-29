@@ -14,6 +14,7 @@ import dbData from '../../db.json'
 
 export const Products = () => {
     const [query, setQuery] = useState("")
+    const [data, setData] = useState([])
 
     const dispatch = useDispatch();
 
@@ -22,7 +23,21 @@ export const Products = () => {
         toast.success(" Product is successfully added to cart")
 
     }
+    useEffect(() => {
+        fetchData()
 
+    }, [])
+
+
+    const fetchData = async() => {
+        try {
+            const datas =await axios.get("https://fakestoreapi.com/products");
+            console.log(datas.data,"dataaaas");
+            setData(datas.data)
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <div className="main-wrapper">
             <div className="main-container">
@@ -35,13 +50,13 @@ export const Products = () => {
                             placeholder='Search Product'
                             id="input-with-icon-adornment"
                             endAdornment={
-                                      <InputAdornment position="end">
+                                <InputAdornment position="end">
                                     <SearchIcon />
                                 </InputAdornment>
                             }
                             value={query}
                             onChange={(e) => setQuery(e.target.value)}
-                           />
+                        />
 
                     </div>
                 </div>
@@ -50,7 +65,7 @@ export const Products = () => {
                 <div className="listing-bx">
                     <Grid container spacing={4}>
                         {
-                            dbData
+                            data
                                 .filter((val) => {
                                     if (query === "") {
                                         return val
@@ -67,13 +82,14 @@ export const Products = () => {
                                                         height="260"
                                                         image={item.image}
                                                         alt="green iguana"
+                                                        style={{objectFit:"contain"}}
                                                     />
                                                     <CardContent>
-                                                        <Typography gutterBottom variant="h5" component="div">
-                                                            {item.title}
+                                                        <Typography gutterBottom variant="h6" component="div">
+                                                            {item.title.slice(0,30)}
                                                         </Typography>
                                                         <Typography variant="body2" color="text.secondary">
-                                                            {(item.body).substring(0, 80)}
+                                                            {item.description.substring(0, 80)}
                                                         </Typography>
                                                     </CardContent>
                                                     <CardActions className='footer-card'>
@@ -106,7 +122,7 @@ export const Products = () => {
                     </Grid>
                 </div>
             </div>
-            
+
         </div>
     )
 }
