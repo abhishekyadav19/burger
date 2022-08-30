@@ -3,7 +3,7 @@ import './App.css';
 import AppBarNav from './components/products/AppBarNav';
 import { CartList } from './components/products/CartList';
 import { Notifications } from './components/products/Notifications';
-import { Products } from './components/products/Products';
+import { Home } from './components/products/Home';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
       <BrowserRouter>
         <AppBarNav />
         <Routes>
-          <Route path='/' element={<Products />} />
+          <Route path='/' element={<Home/>} />
           <Route path='/cart-list' element={<CartList />} />
           <Route path='/notfications' element={<Notifications />} />
         </Routes>
