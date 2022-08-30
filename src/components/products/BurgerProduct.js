@@ -20,7 +20,6 @@ const BurgerProduct = () => {
     const send = (e) => {
         dispatch(ADD(e))
         toast.success(" Product is successfully added to cart")
-
     }
     useEffect(() => {
         fetchPizza()
@@ -48,13 +47,11 @@ const BurgerProduct = () => {
                             .filter((val) => {
                                 if (rquery === "") {
                                     return val
-                                } else if ((val.title.toLowerCase().includes(rquery)) || (val.description.toLowerCase().includes(rquery))
-                                ) {
+                                } else if ((val.title.toLowerCase().includes(rquery)) || (val.description.toLowerCase().includes(rquery))) {
                                     return val
                                 }
-
                             }).map((item, i) => {
-                                const { title, price, description, image, rating } = item;
+                                const { title, price,description, image, rating } = item;
                                 return (
                                     <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
                                         <div className="product">

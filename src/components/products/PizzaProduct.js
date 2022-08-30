@@ -6,14 +6,14 @@ import { Card, CardActions, CardContent, CardMedia, Grid, IconButton, Typography
 import { Button } from '@mui/material';
 import PlaylistAddRoundedIcon from '@mui/icons-material/PlaylistAddRounded';
 import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
-import { ADD} from "../../redux/Actions"
+import { ADD } from "../../redux/Actions"
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
 
 const PizzaProduct = () => {
     const dispatch = useDispatch();
-    let rquery  = useSelector((state) => state.cartreducer.squery);
+    let rquery = useSelector((state) => state.cartreducer.squery);
     const send = (e) => {
         dispatch(ADD(e))
         toast.success(" Product is successfully added to cart")
@@ -32,8 +32,8 @@ const PizzaProduct = () => {
                                 } else if ((val.body.toLowerCase().includes(rquery)) || (val.sales.toLowerCase().includes(rquery))
                                     || (val.title.toLowerCase().includes(rquery))) {
                                     return val
-                                }
-                           
+                                } 
+
                             }).map((item, i) => {
                                 return (
                                     <Grid item xs={12} sm={6} md={4} lg={3} key={i}>

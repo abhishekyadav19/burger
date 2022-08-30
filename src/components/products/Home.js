@@ -30,6 +30,10 @@ export const Home = () => {
                             fullWidth
                             placeholder='Search Product'
                             id="input-with-icon-adornment"
+                            sx={{
+                                '& legend': { display: 'none' },
+                                '& fieldset': { top: 0 },
+                                }}
                             endAdornment={
                                 <InputAdornment position="end">
                                     <SearchIcon />

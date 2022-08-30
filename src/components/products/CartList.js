@@ -40,6 +40,7 @@ export const CartList = () => {
                             {
                                 getdata && getdata.length ?
                                     (getdata.map((item, i) => {
+                                        const { image, title, body, price, sales, description ,rating} = item
                                         return (
 
                                             <Grid item xs={12} sm={6} md={4} lg={3} key={i}>
@@ -48,15 +49,15 @@ export const CartList = () => {
                                                         <CardMedia
                                                             component="img"
                                                             height="260"
-                                                            image={item.image}
+                                                            image={image}
                                                             alt="green iguana"
                                                         />
                                                         <CardContent>
                                                             <Typography gutterBottom variant="h5" component="div">
-                                                                {item.title}
+                                                                {title}
                                                             </Typography>
                                                             <Typography variant="body2" color="text.secondary">
-                                                                {item.body}
+                                                                {(body ? body : description).substring(0, 80)}
                                                             </Typography>
                                                             <div className='btn-grp-value'>
                                                                 <Typography variant="h6" color="success.main">
@@ -72,10 +73,10 @@ export const CartList = () => {
                                                         <CardActions className='footer-card'>
                                                             <div className="left-content">
                                                                 <Typography gutterBottom variant="h6" component="div">
-                                                                    {item.price}
+                                                                    {price}
                                                                 </Typography>
                                                                 <Typography variant="body2" color="text.secondary">
-                                                                    {item.sales}
+                                                                    {sales?sales:rating.count}
                                                                 </Typography>
                                                             </div>
                                                             <div className="btn-right">
