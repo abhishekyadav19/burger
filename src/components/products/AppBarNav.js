@@ -10,13 +10,12 @@ import Menu from '@mui/material/Menu';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
 
 export default function AppBarNav() {
 
-  const getdata =useSelector((state)=>state.cartreducer.carts);
+  const getdata = useSelector((state) => state.cartreducer.carts);
 
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -56,7 +55,7 @@ export default function AppBarNav() {
       }}
       open={isMenuOpen}
       onClose={handleMenuClose}
-    >     
+    >
     </Menu>
   );
 
@@ -69,7 +68,7 @@ export default function AppBarNav() {
         horizontal: 'right',
       }}
       id={mobileMenuId}
-      
+
       transformOrigin={{
         vertical: 'top',
         horizontal: 'right',
@@ -78,8 +77,9 @@ export default function AppBarNav() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem onClick={() => {
-              navigate('cart-list');
-            }}>
+        handleMenuClose();
+        navigate('cart-list');
+      }}>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit" >
           <Badge badgeContent={getdata.length} color="error">
             <ShoppingCartIcon />
@@ -92,7 +92,10 @@ export default function AppBarNav() {
           size="large"
           aria-label="show 17 new notifications"
           color="inherit"
-          onClick={()=>{navigate('/notfications');}}
+          onClick={() => {
+            handleMenuClose();
+            navigate('/notfications');
+          }}
 
         >
           <Badge badgeContent={17} color="error">
@@ -102,7 +105,7 @@ export default function AppBarNav() {
         <p>Notifications</p>
       </MenuItem>
 
-    </Menu>
+    </Menu >
   );
 
   return (
@@ -136,7 +139,7 @@ export default function AppBarNav() {
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
-              onClick={()=>{navigate('/notfications');}}
+              onClick={() => { navigate('/notfications'); }}
             >
               <Badge badgeContent={17} color="error">
                 <NotificationsIcon />
